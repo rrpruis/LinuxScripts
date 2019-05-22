@@ -25,7 +25,7 @@ rsyslog:
   service:
     - running
     - enable: True
-    - reload: True
+    - restart: True
     - watch:
       - pkg: rsyslog
       - file: /etc/rsyslog.conf
