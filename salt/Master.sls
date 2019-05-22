@@ -1,14 +1,6 @@
 apache2:
   pkg:
-    - installed
-  service:
-    - running
-    - enable: True
-    - restart: True
-    - watch:
-      - pkg: apache2
-      - file: /etc/munin/apache.conf
-      - file: /etc/munin/apache24.conf  
+    - installed  
 
 munin:
   pkg:
