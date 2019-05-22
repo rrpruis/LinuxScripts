@@ -1,9 +1,15 @@
 apache2:
   pkg:
     - installed
-  service.running:
+  service:
+    - running
     - enable: True
-    - reload: True  
+    - restart: True
+    - watch:
+      - pkg: apache2
+      - file: /etc/munin/munin.conf
+      - file: /etc/munin/apache.conf
+      - file: /etc/munin/apache24.conf  
 
 munin:
   pkg:
@@ -12,9 +18,13 @@ munin:
 rsyslog:
   pkg:
     - installed
-  service.running:
+  service:
+    - running
     - enable: True
-    - reload: True
+    - restart: True
+    - watch:
+      - pkg: rsyslog
+      - file: /etc/rsyslog.conf
 
 /etc/munin/munin.conf:
   file.managed:

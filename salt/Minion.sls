@@ -1,9 +1,13 @@
 munin-node:
   pkg:
     - installed
-  service.running:
+  service:
+    - running
     - enable: True
-    - reload: True
+    - restart: True
+    - watch:
+      - pkg: munin-node
+      - file: /etc/munin/munin-node.conf
 
 /etc/munin/munin-node.conf:
   file.managed:
@@ -18,9 +22,13 @@ munin-node:
 rsyslog:
   pkg:
     - installed
-  service.running:
+  service:
+    - running
     - enable: True
     - reload: True
+    - watch:
+      - pkg: rsyslog
+      - file: /etc/rsyslog.conf
 
 /etc/rsyslog.conf:
   file.managed:
