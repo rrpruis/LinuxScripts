@@ -1,7 +1,3 @@
-munin:
-  pkg:
-    - installed
-
 apache2:
   pkg:
     - installed
@@ -11,9 +7,12 @@ apache2:
     - restart: True
     - watch:
       - pkg: apache2
-      - file: /etc/munin/munin.conf
       - file: /etc/munin/apache.conf
       - file: /etc/munin/apache24.conf  
+
+munin:
+  pkg:
+    - installed
 
 rsyslog:
   pkg:
